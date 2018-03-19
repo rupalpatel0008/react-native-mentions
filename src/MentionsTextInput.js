@@ -123,7 +123,7 @@ export default class MentionsTextInput extends Component {
     //   {this.props.inputValue}
     // </ParsedText>
     return (
-      <View>
+      <View style={{flex: 1, backgroundColor: 'rgba(255, 0, 0, 0.4)'}}>
         <TextInput
           {...this.props}
           onContentSizeChange={(event) => {
@@ -136,6 +136,7 @@ export default class MentionsTextInput extends Component {
           multiline={true}
           style={[{ ...this.props.textInputStyle }, { height: Math.min(this.props.textInputMaxHeight, this.state.textInputHeight) }]}
           placeholder={this.props.placeholder ? this.props.placeholder : 'Write a comment...'}
+          
         >
           {this.props.inputValue}
         </TextInput>
