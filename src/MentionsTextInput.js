@@ -124,18 +124,6 @@ export default class MentionsTextInput extends Component {
     // </ParsedText>
     return (
       <View>
-        <Animated.View style={[{ ...this.props.suggestionsPanelStyle }, { height: this.state.suggestionRowHeight }]}>
-          <FlatList
-            keyboardShouldPersistTaps={"always"}
-            horizontal={this.props.horizontal}
-            ListEmptyComponent={this.props.loadingComponent}
-            enableEmptySections={true}
-            data={this.props.suggestionsData[this.state.currentTriggerIndex]}
-            keyExtractor={this.props.keyExtractor}
-            inverted={true}
-            renderItem={(rowData) => { return this.props.renderSuggestionsRow[this.state.currentTriggerIndex](rowData, this.stopTracking.bind(this)) }}
-          />
-        </Animated.View>
         <TextInput
           {...this.props}
           onContentSizeChange={(event) => {
@@ -151,7 +139,18 @@ export default class MentionsTextInput extends Component {
         >
           {this.props.inputValue}
         </TextInput>
-
+        <Animated.View style={[{ ...this.props.suggestionsPanelStyle }, { height: this.state.suggestionRowHeight }]}>
+          <FlatList
+            keyboardShouldPersistTaps={"always"}
+            horizontal={this.props.horizontal}
+            ListEmptyComponent={this.props.loadingComponent}
+            enableEmptySections={true}
+            data={this.props.suggestionsData[this.state.currentTriggerIndex]}
+            keyExtractor={this.props.keyExtractor}
+            inverted={true}
+            renderItem={(rowData) => { return this.props.renderSuggestionsRow[this.state.currentTriggerIndex](rowData, this.stopTracking.bind(this)) }}
+          />
+        </Animated.View>
       </View>
     )
   }
