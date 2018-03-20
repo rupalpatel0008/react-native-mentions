@@ -123,7 +123,7 @@ export default class MentionsTextInput extends Component {
     //   {this.props.inputValue}
     // </ParsedText>
     return (
-      <View style={{flex: 1, backgroundColor: 'rgba(255, 0, 0, 0.4)'}}>
+      <View>
         <TextInput
           {...this.props}
           onContentSizeChange={(event) => {
