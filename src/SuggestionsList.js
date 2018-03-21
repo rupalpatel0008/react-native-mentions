@@ -32,7 +32,7 @@ export default class SuggestionsList extends Component {
       const numOfRows = nextProps.MaxVisibleRowCount >= nextProps.suggestionsData[this.state.currentTriggerIndex] ? nextProps.suggestionsData[this.state.currentTriggerIndex].length : nextProps.MaxVisibleRowCount;
       const height = numOfRows * nextProps.suggestionRowHeight;
       this.openSuggestionsPanel(height);
-    } else if(nextProps.inputValue && nextProps.hasChanged) {
+    } else if(this.props.inputValue !== nextProps.inputValue) {
       this.onChangeText(nextProps.inputValue);
     }
   }
