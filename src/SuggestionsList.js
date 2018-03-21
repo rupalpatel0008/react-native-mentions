@@ -33,7 +33,6 @@ export default class SuggestionsList extends Component {
       const height = numOfRows * nextProps.suggestionRowHeight;
       this.openSuggestionsPanel(height);
     } else if(nextProps.inputValue && nextProps.hasChanged) {
-      console.log('In nextProps.inputValue && nextProps.hasChanged', nextProps.inputValue)
       this.onChangeText(nextProps.inputValue);
     }
   }
