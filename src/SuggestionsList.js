@@ -28,12 +28,12 @@ export default class SuggestionsList extends Component {
   componentWillReceiveProps(nextProps) {
     if (!nextProps.inputValue) {
       this.resetTextbox();
+    } else if(this.props.inputValue !== nextProps.inputValue) {
+      this.onChangeText(nextProps.inputValue);
     } else if (this.isTrackingStarted && !nextProps.horizontal && nextProps.suggestionsData[this.state.currentTriggerIndex] && nextProps.suggestionsData[this.state.currentTriggerIndex].length !== 0) {
       const numOfRows = nextProps.MaxVisibleRowCount >= nextProps.suggestionsData[this.state.currentTriggerIndex] ? nextProps.suggestionsData[this.state.currentTriggerIndex].length : nextProps.MaxVisibleRowCount;
       const height = numOfRows * nextProps.suggestionRowHeight;
       this.openSuggestionsPanel(height);
-    } else if(this.props.inputValue !== nextProps.inputValue) {
-      this.onChangeText(nextProps.inputValue);
     }
   }
 
@@ -72,6 +72,7 @@ export default class SuggestionsList extends Component {
   }
 
   updateSuggestions(lastKeyword, trigger) {
+    console.log('In updateSuggestions')
     const triggerIndex = this.state.currentTriggerIndex
     if (triggerIndex > -1) {
       this.props.triggerCallback[triggerIndex](lastKeyword);
