@@ -76,14 +76,13 @@ export default class SuggestionsList extends Component {
     if (triggerIndex > -1) {
       this.props.triggerCallback[triggerIndex](lastKeyword);
     }
-
   }
 
   identifyKeyword(val) {
     if (this.isTrackingStarted) {
       const trigger = this.state.currentTrigger
       const boundary = this.props.triggerLocation === 'new-word-only' ? 'B' : '';
-      const pattern = new RegExp(`\\${boundary}${trigger}[a-z0-9_-]+|\\${boundary}${trigger}`, `gi`);
+      const pattern = new RegExp(`\\${boundary}${trigger}[A-Za-z0-9_-]+|\\${boundary}${trigger}`, `gi`);
       const keywordArray = val.match(pattern);
       if (keywordArray && !!keywordArray.length) {
         this.state.currentTrigger = trigger
