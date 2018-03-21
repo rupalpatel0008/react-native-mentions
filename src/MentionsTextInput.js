@@ -36,7 +36,6 @@ export default class MentionsTextInput extends Component {
   }
 
   render() {
-    console.log('In render of MentionsTextInput')
     return (
       <TextInput
         {...this.props}

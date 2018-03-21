@@ -23,6 +23,7 @@ export default class SuggestionsList extends Component {
     }
     this.isTrackingStarted = false;
     this.previousChar = " ";
+    console.log('In SuggestionsList')
   }
 
   componentWillReceiveProps(nextProps) {
@@ -102,7 +103,6 @@ export default class SuggestionsList extends Component {
 
   onChangeText(val) {
     console.log('In onChangeText', val)
-    this.props.onChangeText(val); // pass changed text back
     const lastChar = val.substr(val.length - 1);
     const wordBoundry = (this.props.triggerLocation === 'new-word-only') ? this.previousChar.trim().length === 0 : true;
     if (this.props.trigger.indexOf(lastChar) > -1 && wordBoundry) {
