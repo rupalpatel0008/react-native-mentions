@@ -33,6 +33,9 @@ export default class SuggestionsList extends Component {
       const numOfRows = nextProps.MaxVisibleRowCount >= nextProps.suggestionsData[this.state.currentTriggerIndex] ? nextProps.suggestionsData[this.state.currentTriggerIndex].length : nextProps.MaxVisibleRowCount;
       const height = numOfRows * nextProps.suggestionRowHeight;
       this.openSuggestionsPanel(height);
+    } else if(nextProps.inputValue && nextProps.hasChanged) {
+      console.log('In nextProps.inputValue && nextProps.hasChanged')
+      this.onChangeText(nextProps.inputValue);
     }
   }
 
@@ -146,7 +149,6 @@ SuggestionsList.propTypes = {
   trigger: PropTypes.array.isRequired,
   triggerLocation: PropTypes.oneOf(['new-word-only', 'anywhere']).isRequired,
   inputValue: PropTypes.string.isRequired,
-  onChangeText: PropTypes.func.isRequired,
   triggerCallback: PropTypes.array.isRequired,
   renderSuggestionsRow: PropTypes.oneOfType([
     PropTypes.array,
@@ -163,11 +165,13 @@ SuggestionsList.propTypes = {
         `Prop 'MaxVisibleRowCount' is required if horizontal is set to false.`
       );
     }
-  }
+  },
+  hasChanged: PropTypes.bool.isRequired
 };
 
 SuggestionsList.defaultProps = {
   suggestionsPanelStyle: { backgroundColor: 'rgba(100,100,100,0.1)' },
   loadingComponent: () => <Text>Loading...</Text>,
   horizontal: false,
+  hasChanged: false
 }
