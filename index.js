@@ -1,2 +1,1 @@
-import MentionsTextInput from './src/MentionsTextInput';
-export default MentionsTextInput;
+export * from './src';
