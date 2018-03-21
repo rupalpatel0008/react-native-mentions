@@ -120,7 +120,6 @@ export default class SuggestionsList extends Component {
           enableEmptySections={true}
           data={this.props.suggestionsData[this.state.currentTriggerIndex]}
           keyExtractor={this.props.keyExtractor}
-          inverted={true}
           renderItem={(rowData) => { return this.props.renderSuggestionsRow[this.state.currentTriggerIndex](rowData, this.stopTracking.bind(this)) }}
         />
       </Animated.View>
