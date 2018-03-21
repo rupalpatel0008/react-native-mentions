@@ -23,11 +23,9 @@ export default class SuggestionsList extends Component {
     }
     this.isTrackingStarted = false;
     this.previousChar = " ";
-    console.log('In SuggestionsList')
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('In componentWillReceiveProps', nextProps)
     if (!nextProps.inputValue) {
       this.resetTextbox();
     } else if (this.isTrackingStarted && !nextProps.horizontal && nextProps.suggestionsData[this.state.currentTriggerIndex] && nextProps.suggestionsData[this.state.currentTriggerIndex].length !== 0) {
@@ -97,7 +95,6 @@ export default class SuggestionsList extends Component {
   }
 
   onChangeText(val) {
-    console.log('In onChangeText', val)
     const lastChar = val.substr(val.length - 1);
     const wordBoundry = (this.props.triggerLocation === 'new-word-only') ? this.previousChar.trim().length === 0 : true;
     if (this.props.trigger.indexOf(lastChar) > -1 && wordBoundry) {
@@ -116,7 +113,6 @@ export default class SuggestionsList extends Component {
   }
 
   render() {
-    console.log('In render of SuggestionsList')
     return (
       <Animated.View style={[{ ...this.props.suggestionsPanelStyle }, { height: this.state.suggestionRowHeight }]}>
         <FlatList
