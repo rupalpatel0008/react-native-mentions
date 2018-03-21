@@ -72,7 +72,6 @@ export default class SuggestionsList extends Component {
   }
 
   updateSuggestions(lastKeyword, trigger) {
-    console.log('In updateSuggestions')
     const triggerIndex = this.state.currentTriggerIndex
     if (triggerIndex > -1) {
       this.props.triggerCallback[triggerIndex](lastKeyword);
