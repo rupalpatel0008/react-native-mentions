@@ -26,6 +26,7 @@ export default class SuggestionsList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('In componentWillReceiveProps', nextProps)
     if (!nextProps.inputValue) {
       this.resetTextbox();
     } else if (this.isTrackingStarted && !nextProps.horizontal && nextProps.suggestionsData[this.state.currentTriggerIndex] && nextProps.suggestionsData[this.state.currentTriggerIndex].length !== 0) {
@@ -36,6 +37,7 @@ export default class SuggestionsList extends Component {
   }
 
   startTracking(trigger) {
+    console.log('In startTracking', trigger)
     this.isTrackingStarted = true;
     this.openSuggestionsPanel();
     this.setState({
@@ -46,6 +48,7 @@ export default class SuggestionsList extends Component {
   }
 
   stopTracking() {
+    console.log('In stopTracking')
     this.isTrackingStarted = false;
     this.closeSuggestionsPanel();
     this.setState({
@@ -56,6 +59,7 @@ export default class SuggestionsList extends Component {
   }
 
   openSuggestionsPanel(height) {
+    console.log('In openSuggestionsPanel', height)
     Animated.timing(this.state.suggestionRowHeight, {
       toValue: height ? height : this.props.suggestionRowHeight,
       duration: 100,
@@ -63,6 +67,7 @@ export default class SuggestionsList extends Component {
   }
 
   closeSuggestionsPanel() {
+    console.log('In closeSuggestionsPanel')
     Animated.timing(this.state.suggestionRowHeight, {
       toValue: 0,
       duration: 100,
@@ -70,14 +75,15 @@ export default class SuggestionsList extends Component {
   }
 
   updateSuggestions(lastKeyword, trigger) {
+    console.log('In updateSuggestions', lastKeyword, trigger)
     const triggerIndex = this.state.currentTriggerIndex
     if (triggerIndex > -1) {
       this.props.triggerCallback[triggerIndex](lastKeyword);
     }
-
   }
 
   identifyKeyword(val) {
+    console.log('In identifyKeyword', val)
     if (this.isTrackingStarted) {
       const trigger = this.state.currentTrigger
       const boundary = this.props.triggerLocation === 'new-word-only' ? 'B' : '';
@@ -92,6 +98,7 @@ export default class SuggestionsList extends Component {
   }
 
   onChangeText(val) {
+    console.log('In onChangeText', val)
     this.props.onChangeText(val); // pass changed text back
     const lastChar = val.substr(val.length - 1);
     const wordBoundry = (this.props.triggerLocation === 'new-word-only') ? this.previousChar.trim().length === 0 : true;
@@ -105,13 +112,14 @@ export default class SuggestionsList extends Component {
   }
 
   resetTextbox() {
+    console.log('In resetTextbox')
     this.previousChar = " ";
     this.stopTracking();
     this.setState({ textInputHeight: this.props.textInputMinHeight });
   }
 
   render() {
-    console.log('In render of SuggestionsList', this.props)
+    console.log('In render of SuggestionsList')
     return (
       <Animated.View style={[{ ...this.props.suggestionsPanelStyle }, { height: this.state.suggestionRowHeight }]}>
         <FlatList
