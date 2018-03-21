@@ -31,7 +31,12 @@ export default class MentionsTextInput extends Component {
     })
   }
 
+  onChangeText(val) {
+    this.props.onChangeText(val); // pass changed text back
+  }
+
   render() {
+    console.log('In render of MentionsTextInput', this.props)
     return (
       <TextInput
         {...this.props}
@@ -41,7 +46,7 @@ export default class MentionsTextInput extends Component {
           });
         }}
         ref={component => this._textInput = component}
-        onChangeText={this.props.onChangeText}
+        onChangeText={this.onChangeText.bind(this)}
         multiline={true}
         style={[{ ...this.props.textInputStyle }, { height: Math.min(this.props.textInputMaxHeight, this.state.textInputHeight) }]}
         placeholder={this.props.placeholder ? this.props.placeholder : 'Write a comment...'}

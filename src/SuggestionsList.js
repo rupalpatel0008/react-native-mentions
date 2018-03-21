@@ -111,6 +111,7 @@ export default class SuggestionsList extends Component {
   }
 
   render() {
+    console.log('In render of SuggestionsList', this.props)
     return (
       <Animated.View style={[{ ...this.props.suggestionsPanelStyle }, { height: this.state.suggestionRowHeight }]}>
         <FlatList
